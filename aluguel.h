@@ -14,5 +14,5 @@ typedef struct aluguel {
 
 // Declaração das funções aqui
 int teste();
-
+void alugarCarro();
 #endif 

@@ -1,9 +1,7 @@
 #include <stdio.h>
-#include <string.h>
 #include "cliente.h"
 #include "carro.h"
 #include "aluguel.h"
-#include "filemanager.h"
 
 #define TAM 1000 // Tamanho máximo dos vetores;
 
@@ -16,15 +14,11 @@ Cliente clientes[TAM];
 Carro carros[TAM];
 Aluguel alugueis[TAM];
 
-
 int main(void) {
-    /*Carrega os dados se existir */
-    lerArqCliente(clientes, &indexCliente);
-    lerArqCarro(carros, &indexCarro);
-    lerArqAluguel(alugueis, &indexAluguel);
-    
+    // funcao para o menu veem aqui
     
     printf("Tudo ok!\n");
-    
+    printf("Valor: %d", teste());
+    alugarCarro(carros, indexCarro, clientes, indexCliente, alugueis, indexAluguel);
     return 0;
 }
