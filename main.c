@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "entidades/cliente.h"
-#include "entidades/carro.h"
-#include "entidades/aluguel.h"
+#include "cliente.h"
+#include "carro.h"
+#include "aluguel.h"
 
 #define TAM 1000 // Tamanho máximo dos vetores;
 
