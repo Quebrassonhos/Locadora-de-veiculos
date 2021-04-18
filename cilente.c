@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include "cliente.h"
+
 // alterado por jose
 
 
