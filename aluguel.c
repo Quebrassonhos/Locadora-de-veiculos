@@ -1,5 +1,6 @@
 /* Definições de funções aqui */
 #include <string.h>
+#include <stdio.h>
 #include "aluguel.h"
 #include "carro.h"
 #include "cliente.h"

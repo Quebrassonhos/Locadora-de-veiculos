@@ -11,4 +11,7 @@ typedef struct cliente {
 
 // Declaração das funções aqui
 
+Cliente criarCliente();
+void printCliente();
+
 #endif

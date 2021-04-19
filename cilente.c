@@ -4,17 +4,26 @@
 // alterado por jose
 
 
-void cadastrarCliente(Cliente* clientes; int* indexCliente) {
+Cliente criarCliente() {
+	Cliente cliente;
 	
-    printf("Digite seu nome: ");
-    scanf("%[^\n]s%*c", &clientes[indexCliente].nome);
+    printf("-> Digite o nome: ");
+    scanf("%[^\n]s%*c", cliente.nome);
 
-    Printf("Digite seu cpf: ");
-    scanf("%d", &clientes[indexCliente].cpf);
+    printf("-> Digite o cpf: ");
+    scanf("%s%*c", cliente.cpf);
 
-    printf("Digite o número de telefone: "); //nao esquecer de colocar a funcao que habilita acentuacao.
-    scanf("%d", &clientes[indexCliente].telefone);
-    indexCliente = indexCliente + 1;
+    printf("-> Digite o número de telefone: ");
+    scanf("%d", &cliente.telefone);
+    
+    return cliente;
+
+}
+
+void printCliente(Cliente cliente) {
+    printf("-> Nome: %s\n", cliente.nome);
+    printf("-> CPF: %s\n", cliente.cpf);
+    printf("-> Telefone: %d\n", cliente.telefone);
 }
 
 
