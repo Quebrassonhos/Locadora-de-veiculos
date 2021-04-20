@@ -13,6 +13,6 @@ typedef struct cliente {
 
 Cliente criarCliente();
 void printCliente();
-void atualizarDados(Cliente *clientes; int indexCliente);
+void atualizarDadosCliente(Cliente *clientes, int pos);
 
 #endif

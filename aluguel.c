@@ -7,7 +7,7 @@
 #include "cliente.h"
 
 //Realizar um aluguel de um carro para um cliente
-void alugarCarro(Carro* arrayCarro, int indiceCarro, Cliente* arrayCliente, int* indiceCliente, Aluguel* arrayAlugueis, int* indiceAlugueis){
+void alugarCarro(Carro* arrayCarro, int indiceCarro, Cliente* arrayCliente, int indiceCliente, Aluguel* arrayAlugueis, int* indiceAlugueis){
     
     time_t mytime;
     mytime = time(NULL);
@@ -17,7 +17,7 @@ void alugarCarro(Carro* arrayCarro, int indiceCarro, Cliente* arrayCliente, int*
     printf("Carros disponiveis: "); 
     for (size_t i=0; i<indiceCarro; i++){
         //strmp retorna 0 a placa do carro já estiver alugada.
-        if(strcmp(arrayCarro[indiceCarro].placa, arrayAlugueis[*indiceCliente].placaCarro) != 0){
+        if(strcmp(arrayCarro[indiceCarro].placa, arrayAlugueis[indiceCliente].placaCarro) != 0){
             printf("%s\n%s\n", arrayCarro[indiceCarro].modelo, arrayCarro[indiceCarro].placa);
         }
     }
