@@ -8,11 +8,11 @@
 typedef struct aluguel {
     char placaCarro[8];
     char cpfCliente[10];
-    time_t dataAluguel;
-    time_t dataEntrega;
+    struct tm dataAluguel;
+    struct tm dataEntrega;
 } Aluguel;
 
 // Declaração das funções aqui
-int teste();
 void alugarCarro();
+void devolverCarro();
 #endif 
