@@ -42,6 +42,33 @@ void atualizarDadosCliente(Cliente *clientes, int pos) {
 	scanf("%d%*c", &clientes[pos].telefone);
 }
 
+
+
+
+
+
+//observando uns codigos, pensei: como tal carro vai pertencer a tal cliente? Nao seria necessario colocar uma variavel cliente dentro da struct carros?
+//duvidas: observe a entrada da funcao, o array esta sendo invocado corretamente?
+void buscarClientes(Cliente clientes, indexCliente) {
+	char cpf[20];
+	int i;
+	printf("Digite o cpf do cliente que queira buscar: ");
+	scanf("%s%*c", &cpf);
+	for (i = 0; i <= indexCliente; i++) {//coloquei <= pq na minha cabeca o ultimo indice tbm é um cliente
+		if (strcmp(cpf, cliente[indexCliente].cpf) == 0){
+			pritnf("O cpf %s foi encontrado e pertence a %s!\n", cpf, cliente[indexCliente].nome);
+		}
+		else{
+			printf("O cpf %s nao foi encontrado no bando de dados!\n");
+		}
+	}
+}
+
+
+
+
+
+
 void excluirCliente(Cliente *clientes, int *indexCliente) {
     Cliente novoArray[1000];
     int indice = 0;
