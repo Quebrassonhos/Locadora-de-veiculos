@@ -13,9 +13,17 @@ int mostrarMenu();
 
 void cadastrarClientesTela(Cliente *cliente, int *indexCliente);
 
+void cadastrarCarrosTela(Carro *carros, int *indexCarro);
+
 void atualizarClientesTela(Cliente *cliente, int indexCliente);
 
+void atualizarCarrosTela(Carro *carros, int indexCarro);
+
 void excluirClientesTela(Cliente *cliente, int *indexCliente);
+
+void excluirCarrosTela(Carro *carros, int *indexCarro);
+
+void exibirCarrosTela(Carro *carros, int indexCarro);
 
 void exibirClientesTela(Cliente *cliente, int indexCliente);        
 

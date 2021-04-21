@@ -6,7 +6,7 @@
 
 
 Cliente criarCliente() {
-	Cliente cliente;
+    Cliente cliente;
 	
     printf("-> Digite o nome: ");
     scanf("%[^\n]%*c", cliente.nome);
@@ -27,47 +27,42 @@ void printCliente(Cliente cliente) {
     printf("-> Telefone: %d\n", cliente.telefone);
 }
 
-void atualizarDadosCliente(Cliente *clientes, int pos) {
-    
-    printCliente(clientes[pos]);
-    printf("-----------------------------\n");
-
-	printf("-> Digite o NOVO nome do cliente: ");
-	scanf("%[^\n]s%*c", clientes[pos].nome);
-		
-	printf("-> Digite o NOVO cpf do cliente: ");
-	scanf("%s%*c", clientes[pos].cpf);
-		
-	printf("-> Digite o NOVO cpf do cliente: ");
-	scanf("%d%*c", &clientes[pos].telefone);
-}
-
-
-
-
-
-
-//observando uns codigos, pensei: como tal carro vai pertencer a tal cliente? Nao seria necessario colocar uma variavel cliente dentro da struct carros?
-//duvidas: observe a entrada da funcao, o array esta sendo invocado corretamente?
-void buscarClientes(Cliente clientes, indexCliente) {
-	char cpf[20];
+int buscarCliente(Cliente *clientes, int indexCliente, char cpf[10]) {
 	int i;
-	printf("Digite o cpf do cliente que queira buscar: ");
-	scanf("%s%*c", &cpf);
-	for (i = 0; i <= indexCliente; i++) {//coloquei <= pq na minha cabeca o ultimo indice tbm é um cliente
-		if (strcmp(cpf, cliente[indexCliente].cpf) == 0){
-			pritnf("O cpf %s foi encontrado e pertence a %s!\n", cpf, cliente[indexCliente].nome);
-		}
-		else{
-			printf("O cpf %s nao foi encontrado no bando de dados!\n");
+	
+	for (i = 0; i < indexCliente; i++) {
+		if (strcmp(cpf, clientes[i].cpf) == 0){
+			//O cpf foi encontrado !\n", cpf;
+			return i;
 		}
 	}
+	return -1;
 }
 
-
-
-
-
+void atualizarDadosCliente(Cliente *clientes, int pos) {
+    char flag;
+    
+    printCliente(clientes[pos]);
+    printf("-------------------------------\n");
+    
+    printf("Deseja realmente atualizar os dados? (S/N): ");
+    scanf("%c%*c", &flag);
+    
+    if(flag == 's' || flag == 'S') {
+	    printf("\n-> Digite o NOVO nome do cliente: ");
+	    scanf("%[^\n]%*c", clientes[pos].nome);
+		
+	    printf("-> Digite o NOVO CPF do cliente: ");
+	    scanf("%s%*c", clientes[pos].cpf);
+		
+	    printf("-> Digite o NOVO Telefone do cliente: ");
+	    scanf("%d%*c", &clientes[pos].telefone);
+	    
+	    printf("#Cliente atualizado.");
+    } else {
+        printf("\n@Cancelado!");
+    }
+}
 
 void excluirCliente(Cliente *clientes, int *indexCliente) {
     Cliente novoArray[1000];
@@ -89,11 +84,12 @@ void excluirCliente(Cliente *clientes, int *indexCliente) {
     }
     
     if(excluiu > -1) {
-        printf("@ Item apagado:\n");
-        printCliente(clientes[excluiu]);
-        
-        *indexCliente = indice;
-        clientes = novoArray;
+ 
+      printf("@ Item apagado:\n");
+       printCliente(clientes[excluiu]);
+       
+       *indexCliente = indice;
+       clientes = novoArray;
     }
     else {
         printf("@Item não encontrado!\n");

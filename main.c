@@ -20,19 +20,32 @@ Aluguel alugueis[TAM];
 int main(void) {
     int opcao;
     
+    //Carrega os dados
     lerArqCliente(clientes, &indexCliente);
     
-    while((opcao = mostrarMenu()) < 7) {
+    while((opcao = mostrarMenu()) < 11) {
         switch(opcao) {
             case 1:
                 cadastrarClientesTela(clientes, &indexCliente);
                 break;
+            case 2:
+                cadastrarCarrosTela(carros, &indexCarro);
+            case 3:
+                atualizarClientesTela(clientes, indexCliente);
+                break;
             case 4:
+                atualizarCarrosTela(carros, indexCarro);
+            case 5:
                 excluirClientesTela(clientes, &indexCliente);
                 break;
             case 6:
+                excluirCarrosTela(carros, &indexCarro);
+                break;
+            case 7:
                 exibirClientesTela(clientes, indexCliente);
                 break;
+            case 8:
+                exibirCarrosTela(carros, indexCarro);
         }
     }
     
