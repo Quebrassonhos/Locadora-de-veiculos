@@ -15,18 +15,19 @@ int mostrarMenu() {
         printf("1 - Cadastrar Clientes.\n");
         printf("2 - Cadastrar Carros.\n");
         printf("3 - Atualizar dados do Cliente\n");
-        printf("3 - Alugar veículo.\n");
-        printf("4 - Exibir clientes.\n");
-        printf("5 - Sair.\n");
+        printf("4 - Excluir clientes\n");
+        printf("5 - Alugar veículo.\n");
+        printf("6 - Exibir clientes.\n");
+        printf("7 - Sair.\n");
         
         printf("Opção: ");
         scanf("%d%*c", &opcao);
-    } while(opcao > 5);
+    } while(opcao > 7);
     
     return opcao;
 }
 
-void cadastrarClientes(Cliente *clientes, int *indexCliente) {
+void cadastrarClientesTela(Cliente *clientes, int *indexCliente) {
     char flag;
     
     do {
@@ -39,12 +40,12 @@ void cadastrarClientes(Cliente *clientes, int *indexCliente) {
         printf("\n-> Deseja cadastrar outro cliente (S/N): ");
         scanf("%c%*c", &flag);
         
-    } while(flag == 'S' || flag == 'N');
+    } while(flag == 'S' || flag == 's');
     
     salvarArqCliente(clientes, *indexCliente);
 }
 
-void atualizarClientes(Cliente *clientes, int indexCliente) {
+void atualizarClientesTela(Cliente *clientes, int indexCliente) {
     char flag;
     
     do {
@@ -55,12 +56,29 @@ void atualizarClientes(Cliente *clientes, int indexCliente) {
         printf("\n-> Deseja atualizar outro cliente (S/N): ");
         scanf("%c%*c", &flag);
         
-    } while(flag == 'S' || flag == 'N');
+    } while(flag == 'S' || flag == 's');
     
     salvarArqCliente(clientes, indexCliente);
 }
 
-void exibirRelatorioClientes(Cliente *clientes, int indexCliente) {
+void excluirClientesTela(Cliente *clientes, int *indexCliente) {
+    char flag;
+    
+    do {
+        system("clear || cls");
+        printf("\n========== TELA - Excluir Clientes ==========\n");
+    
+        excluirCliente(clientes, indexCliente);
+        
+        printf("\n-> Deseja excluir outro cliente (S/N): ");
+        scanf("%c%*c", &flag);
+        
+    } while(flag == 'S' || flag == 's');
+    
+    salvarArqCliente(clientes, *indexCliente);
+}
+
+void exibirClientesTela(Cliente *clientes, int indexCliente) {
     system("clear || cls");
     printf("\n============ TELA - Clientes cadastrados ============\n");
     

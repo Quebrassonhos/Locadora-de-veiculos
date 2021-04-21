@@ -22,13 +22,16 @@ int main(void) {
     
     lerArqCliente(clientes, &indexCliente);
     
-    while((opcao = mostrarMenu()) < 5) {
+    while((opcao = mostrarMenu()) < 7) {
         switch(opcao) {
             case 1:
-                cadastrarClientes(clientes, &indexCliente);
+                cadastrarClientesTela(clientes, &indexCliente);
                 break;
             case 4:
-                exibirRelatorioClientes(clientes, indexCliente);
+                excluirClientesTela(clientes, &indexCliente);
+                break;
+            case 6:
+                exibirClientesTela(clientes, indexCliente);
                 break;
         }
     }

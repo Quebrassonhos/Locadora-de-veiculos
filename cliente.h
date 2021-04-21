@@ -12,7 +12,8 @@ typedef struct cliente {
 // Declaração das funções aqui
 
 Cliente criarCliente();
-void printCliente();
+void printCliente(Cliente cliente);
 void atualizarDadosCliente(Cliente *clientes, int pos);
+void excluirCliente(Cliente *clientes, int *indexCliente);    
 
 #endif

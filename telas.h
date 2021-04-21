@@ -11,10 +11,12 @@
 
 int mostrarMenu();
 
-void cadastrarClientes(Cliente *cliente, int *indexCliente);
+void cadastrarClientesTela(Cliente *cliente, int *indexCliente);
 
-void atualizarClientes(Cliente *cliente, int indexCliente);
+void atualizarClientesTela(Cliente *cliente, int indexCliente);
 
-void exibirRelatorioClientes(Cliente *cliente, int indexCliente);        
+void excluirClientesTela(Cliente *cliente, int *indexCliente);
+
+void exibirClientesTela(Cliente *cliente, int indexCliente);        
 
 #endif

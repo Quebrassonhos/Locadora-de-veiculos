@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "cliente.h"
 
 // alterado por jose
@@ -41,9 +42,36 @@ void atualizarDadosCliente(Cliente *clientes, int pos) {
 	scanf("%d%*c", &clientes[pos].telefone);
 }
 
-
-
-
+void excluirCliente(Cliente *clientes, int *indexCliente) {
+    Cliente novoArray[1000];
+    int indice = 0;
+    int excluiu = -1;
+    char cpf[9];
+    
+    printf("-> Digite o CPF: ");
+    scanf("%s%*c", cpf);
+    
+    for(int i = 0; i < *indexCliente; i++) {
+        if(strcmp(clientes[i].cpf, cpf) == 0) {
+            excluiu = i;
+        }
+        else {
+            novoArray[indice] = clientes[i];
+            indice = indice + 1;
+        }
+    }
+    
+    if(excluiu > -1) {
+        printf("@ Item apagado:\n");
+        printCliente(clientes[excluiu]);
+        
+        *indexCliente = indice;
+        clientes = novoArray;
+    }
+    else {
+        printf("@Item não encontrado!\n");
+    }
+}
 
 
 
