@@ -15,5 +15,5 @@ Cliente criarCliente();
 void printCliente(Cliente cliente);
 void atualizarDadosCliente(Cliente *clientes, int pos);
 void excluirCliente(Cliente *clientes, int *indexCliente);    
-void buscarClientes(Cliente clientes, indexCliente);
+void buscarClientes(Cliente clientes, indexCliente);//confira aquibse ta joia, nao tenho certeza se é assim que chama o array
 #endif
