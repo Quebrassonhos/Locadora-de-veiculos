@@ -20,6 +20,7 @@ Aluguel alugueis[TAM];
 void carregarDadosTXT() {
     lerArqCliente(clientes, &indexCliente);
     lerArqCarro(carros, &indexCarro);
+    lerArqAluguel(alugueis, &indexAluguel);
 }
 
 int main(void) {
