@@ -1,0 +1,2 @@
+modelo: Ford
+placa: 23769

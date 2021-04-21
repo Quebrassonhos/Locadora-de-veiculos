@@ -17,11 +17,15 @@ Carro carros[TAM];
 Aluguel alugueis[TAM];
 
 
+void carregarDadosTXT() {
+    lerArqCliente(clientes, &indexCliente);
+    lerArqCarro(carros, &indexCarro);
+}
+
 int main(void) {
     int opcao;
     
-    //Carrega os dados
-    lerArqCliente(clientes, &indexCliente);
+    carregarDadosTXT();
     
     while((opcao = mostrarMenu()) < 11) {
         switch(opcao) {
@@ -30,22 +34,25 @@ int main(void) {
                 break;
             case 2:
                 cadastrarCarrosTela(carros, &indexCarro);
+                break;
             case 3:
                 atualizarClientesTela(clientes, indexCliente);
                 break;
             case 4:
                 atualizarCarrosTela(carros, indexCarro);
+                break;
             case 5:
                 excluirClientesTela(clientes, &indexCliente);
                 break;
             case 6:
                 excluirCarrosTela(carros, &indexCarro);
                 break;
-            case 7:
+            case 9:
                 exibirClientesTela(clientes, indexCliente);
                 break;
-            case 8:
+            case 10:
                 exibirCarrosTela(carros, indexCarro);
+                break;
         }
     }
     

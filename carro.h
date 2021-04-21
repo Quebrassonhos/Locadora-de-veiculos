@@ -10,4 +10,14 @@ typedef struct carro {
 
 // Declaração das funções aqui
 
-#endif
+Carro criarCarro();
+
+void atualizarDadosCarro(Carro *carros, int pos);
+
+void excluirCarro(Carro *carros, int *indexCarro, int pos);
+
+void printCarro(Carro carro);     
+
+int buscarCarro(Carro *carros, int indexCarro, char placa[8]);
+
+#endif 
