@@ -27,4 +27,7 @@ void exibirCarrosTela(Carro *carros, int indexCarro);
 
 void exibirClientesTela(Cliente *cliente, int indexCliente);        
 
+void alugarCarroTela(Carro *carros, int indexCarro,
+                     Cliente *Clientes, int indexCliente,
+                     Aluguel *alugueis, int *indexAluguel);
 #endif

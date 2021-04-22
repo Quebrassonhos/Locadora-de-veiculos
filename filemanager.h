@@ -13,8 +13,8 @@ void salvarArqCarro(Carro* carros, int idx);
 
 void lerArqCarro(Carro* carros, int *idx);
 
-void salvarArqAluguel(Aluguel* aluguel, int idx);
+void salvarArqAluguel(Aluguel* alugueis, int idx);
 
-void lerArqAluguel(Aluguel* aluguel, int *idx);
+void lerArqAluguel(Aluguel* alugueis, int *idx);
 
 #endif

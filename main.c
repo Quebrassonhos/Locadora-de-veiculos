@@ -48,6 +48,13 @@ int main(void) {
             case 6:
                 excluirCarrosTela(carros, &indexCarro);
                 break;
+            case 7:
+                alugarCarroTela(
+                    carros, indexCarro,
+                    clientes, indexCliente,
+                    alugueis, &indexAluguel
+                );
+                break;
             case 9:
                 exibirClientesTela(clientes, indexCliente);
                 break;

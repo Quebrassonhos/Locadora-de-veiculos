@@ -1,76 +1,95 @@
-/* Definições de funções aqui */
+/*Definições de funções aqui */
 #include <string.h>
 #include <stdio.h>
 #include <time.h>
 #include "aluguel.h"
-#include "carro.h"
-#include "cliente.h"
 #include "filemanager.h"
 
+
+// Retorna 1 se o carro já estiver alugado e 0 se NAO estiver.
+int estaAlugado(Carro carro, Aluguel *alugueis, int indiceAlugueis) {
+    for(int i = 0; i < indiceAlugueis; i++) {
+        
+        if(strcmp(carro.placa, alugueis[i].placaCarro) != 0){
+            return 1; // já está alugado.
+        }
+    }
+    return 0; // não está alugado.
+}
+
+int calcularPreco(int dias) {
+    return 100 * dias;
+}
+
 //Realizar um aluguel de um carro para um cliente
-void alugarCarro(Carro* arrayCarro, int indiceCarro, Cliente* arrayCliente, int* indiceCliente, Aluguel* arrayAlugueis, int* indiceAlugueis){
+Aluguel alugarCarro(Carro* arrayCarro, int indiceCarro, 
+                 Cliente* arrayCliente, int indiceCliente, 
+                 Aluguel* arrayAlugueis, int* indiceAlugueis) {
+                     
     char cpf[10], modelo[128];
-    int i, j, tag=0;
-    int entregaDia, entregaMes, entregaAno;
+    int i, idCliente, j;
+    int dias;
     time_t systemtime;
     systemtime = time(NULL);
     //tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900   referência
 
                                                                     //Bloco que mostra a disponibilidade de veículos
 
-    printf("Carros disponiveis: "); 
-    for (i=0; i<indiceCarro; i++){
-        //strcmp retorna 0 se a placa do carro já estiver alugada.
-        if(strcmp(arrayCarro[indiceCarro].placa, arrayAlugueis[*indiceCliente].placaCarro) != 0){
-            printf("%s\n%s\n", arrayCarro[indiceCarro].modelo, arrayCarro[indiceCarro].placa);
+    printf("\n@ Carros disponiveis:\n"); 
+    for (i = 0; i < indiceCarro; i++){
+        if(estaAlugado(arrayCarro[i], arrayAlugueis, *indiceAlugueis) == 0) {
+            printCarro(arrayCarro[i]);
+            printf("\n");
         }
     }
     
+    printf("---------------------------\n");
+    
+    printf("\nClientes cadastrados:\n");
+    for(int c = 0; c < indiceCliente; c++) {
+        printCliente(arrayCliente[c]);
+        printf("\n");
+    }
+    printf("--------------------------\n");
 
 
                                                                     //Bloco que efetua o aluguel
 
     //checa qual carro vai ser escolhido
     printf("Modelo do Carro de escolha: ");
-    scanf("%[^\n]s%*c", modelo);
-    for (j=0; j<indiceCarro; j++){
-        if(strcmp(modelo, arrayCarro->modelo)==0){
+    scanf("%[^\n]%*c", modelo);
+    
+    for (j = 0; j < indiceCarro; j++){
+        if(strcmp(modelo, arrayCarro[j].modelo) == 0){
             break;
         }
     }
 
     do{ //pega os dados do cliente
-        printf("Cpf do Cliente: ");
-        scanf("%s%*c", &cpf);
-        for (i=0; i<indiceCliente; i++){
-            if (strcmp(cpf, arrayCliente->cpf)==0){
-                tag++;
-                break;
-            }
-        }
-    } while (tag!=1);
+        printf("=> Cpf do Cliente: ");
+        scanf("%s%*c", cpf);
+        idCliente = buscarCliente(arrayCliente, indiceCliente, cpf);
+        
+    } while (idCliente == -1);
 
     //data de entrega
-    printf("digite só os numeros no formato DD/MM/ANO como em 23 06 1912)\n");
-    printf("Qual a data de entrega: ");
-    scanf("%d %d %d", entregaDia, entregaMes, entregaAno);
-
-    for (size_t k=0; k<indiceAlugueis; k++){
-        if (arrayAlugueis[k].placaCarro == NULL){
-            arrayAlugueis[k].dataEntrega.tm_mday = entregaDia;
-            arrayAlugueis[k].dataEntrega.tm_mon = entregaMes+1;
-            arrayAlugueis[k].dataEntrega.tm_year = entregaAno+1900;
-            strcpy(arrayAlugueis[k].placaCarro, arrayCarro[j].placa);
-            strcpy(arrayAlugueis[k].cpfCliente, arrayCliente[i].cpf);
-            arrayAlugueis[k].dataAluguel = *localtime(&systemtime);
-        }
-    }
-
-    indiceAlugueis++;
-    salvarArqAluguel(arrayAlugueis, indiceAlugueis);
+    printf("=> Quatdade de dias: ");
+    scanf("%d%*c", &dias);
+    
+    Aluguel aluguel;
+    strcpy(aluguel.placaCarro, arrayCarro[j].placa);
+    strcpy(aluguel.cpfCliente, arrayCliente[idCliente].cpf);
+    aluguel.dataAluguel = (long long)systemtime;
+    aluguel.dataEntrega = (long long)systemtime + (dias * 24 * 60 * 60);
+    
+    printf("O valor a ser pago no dia da devolução\n");
+    printf("Valor: %d + multa por atraso.", calcularPreco(dias));
+    printf("\n @ Carro alugado.\n");
+    
+    return aluguel;
 }
 
-void devolverCarro(Aluguel* arrayAlugueis){
+/*void devolverCarro(Aluguel* arrayAlugueis){
     int valor_diaria, dias, meses, anos;
     int total, valor_multa;
     time_t systemtime;
@@ -99,4 +118,4 @@ void devolverCarro(Aluguel* arrayAlugueis){
         total=dias*valor_multa;
     }
     total = dias*valor_diaria;
-}
+}*/

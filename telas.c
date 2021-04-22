@@ -211,3 +211,29 @@ void exibirCarrosTela(Carro *carros, int indexCarro) {
     
     pausar();
 }
+
+void alugarCarroTela(Carro *carros, int indexCarro,
+                     Cliente *clientes, int indexCliente,
+                     Aluguel *alugueis,  int *indexAluguel) {
+    
+    char flag;
+    
+    do {
+        system("clear || cls");
+        printf("\n============ TELA - Alugar veículo ============\n");
+    
+        alugueis[*indexAluguel] = alugarCarro(
+            carros, indexCarro, 
+            clientes, indexCliente,
+            alugueis, indexAluguel
+        );
+    
+        *indexAluguel = *indexAluguel + 1;
+        
+        printf("\n=> Deseja alugar outro carro? (S/N): ");
+        scanf("%c%*c", &flag);
+        
+    } while(flag == 'S' || flag == 's');
+    
+    salvarArqAluguel(alugueis, *indexAluguel);
+}
