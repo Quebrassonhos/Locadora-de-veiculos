@@ -75,3 +75,18 @@ void excluirCarro(Carro *carros, int *indexCarro, int pos) {
     
     printf("\n@ Item apagado:\n");
 }
+
+void validaPlaca(Carro *carros, int *indexCarro, int pos){
+	char valPlaca;                                           // Declaração
+   
+    do {
+        printf("Digite o numero da placa");     // Comando 1: pedido ao usuário
+        scanf("%s", &valPlaca);                             // Comando 2: armazenamento do char
+    } while(valPlaca == carro.placa);                    // Epressão lógica
+		if(valPlaca == carro.placa){
+			printf("Placa confirmada com sucesso!");
+		}else printf("Placa invalida!");
+    getchar();
+    
+    return 0;
+}
