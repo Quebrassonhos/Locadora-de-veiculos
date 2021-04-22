@@ -1,5 +1,5 @@
-# Locadora-de-Veiculos: Topcar-Locadora
-O projeto locadora de carro tem como intuito criar um programa que sirva para alugar carros. O projeto é composto por alunos da UESPI (Universidade Estadual do Piauí): Jelson Matheus, Juliana Sued, Luis Gabriel e José Wesley. Além disto, o projeto é feito na linguagem C.
+# Locadora-de-Veiculos
+Fork de um projeto locadora de veículos. O projeto é composto por alunos da UESPI (Universidade Estadual do Piauí). Além disto, o projeto é feito na linguagem C.
 
 ## Funcionalidades
 * Cadastrar clientes;
