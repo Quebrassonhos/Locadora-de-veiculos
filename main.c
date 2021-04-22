@@ -2,6 +2,8 @@
 #include "cliente.h"
 #include "carro.h"
 #include "aluguel.h"
+#include "filemanager.h"
+#include "telas.h"
 
 #define TAM 1000 // Tamanho máximo dos vetores;
 
@@ -14,11 +16,53 @@ Cliente clientes[TAM];
 Carro carros[TAM];
 Aluguel alugueis[TAM];
 
+
+void carregarDadosTXT() {
+    lerArqCliente(clientes, &indexCliente);
+    lerArqCarro(carros, &indexCarro);
+    lerArqAluguel(alugueis, &indexAluguel);
+}
+
 int main(void) {
-    // funcao para o menu veem aqui
+    int opcao;
     
-    printf("Tudo ok!\n");
-    printf("Valor: %d", teste());
-    alugarCarro(carros, indexCarro, clientes, indexCliente, alugueis, indexAluguel);
+    carregarDadosTXT();
+    
+    while((opcao = mostrarMenu()) < 11) {
+        switch(opcao) {
+            case 1:
+                cadastrarClientesTela(clientes, &indexCliente);
+                break;
+            case 2:
+                cadastrarCarrosTela(carros, &indexCarro);
+                break;
+            case 3:
+                atualizarClientesTela(clientes, indexCliente);
+                break;
+            case 4:
+                atualizarCarrosTela(carros, indexCarro);
+                break;
+            case 5:
+                excluirClientesTela(clientes, &indexCliente);
+                break;
+            case 6:
+                excluirCarrosTela(carros, &indexCarro);
+                break;
+            case 7:
+                alugarCarroTela(
+                    carros, indexCarro,
+                    clientes, indexCliente,
+                    alugueis, &indexAluguel
+                );
+                break;
+            case 9:
+                exibirClientesTela(clientes, indexCliente);
+                break;
+            case 10:
+                exibirCarrosTela(carros, indexCarro);
+                break;
+        }
+    }
+    
     return 0;
 }

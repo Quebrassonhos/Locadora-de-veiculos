@@ -12,4 +12,4 @@ O projeto locadora de carro tem como intuito criar um programa que sirva para al
 * Devolver o carro a locadora;
 * Exibir todos os clientes;
 * Exibir todos os carros disponíveis;
-* Exibir todos os carros alugados;
+* Exibir todos os carros alugados; 

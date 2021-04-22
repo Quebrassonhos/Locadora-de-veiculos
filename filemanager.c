@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #include "cliente.h"
 #include "carro.h"
-#include "aluguel.h"
 #include "aluguel.h"
 
 
@@ -23,13 +23,12 @@ void salvarArqCliente(Cliente* clientes, int idx) {
 void lerArqCliente(Cliente* clientes, int *idx) {
     FILE *arq;
     int result;
+    *idx = 0;
     
     arq = fopen("dados/clientes.txt", "rt");
     
     if(arq == NULL)
         return;
-        
-    *idx = 0;
     
     result = fscanf(arq, "nome: %[^\n]\n", clientes[*idx].nome);
     while(result != EOF) {
@@ -59,13 +58,12 @@ void salvarArqCarro(Carro* carros, int idx) {
 void lerArqCarro(Carro* carros, int *idx) {
     FILE *arq;
     int result;
+    *idx = 0;
     
     arq = fopen ("dados/carros.txt", "rt");
     
     if(arq == NULL)
         return;
-
-    *idx = 0;
     
     result = fscanf(arq, "modelo: %[^\n]\n", carros[*idx].modelo);
     while(result != EOF) {
@@ -74,6 +72,8 @@ void lerArqCarro(Carro* carros, int *idx) {
         
         result = fscanf(arq, "modelo: %[^\n]\n", carros[*idx].modelo);
     }
+    
+    fclose(arq);
 }
 
 void salvarArqAluguel(Aluguel* al, int idx) {
@@ -81,10 +81,11 @@ void salvarArqAluguel(Aluguel* al, int idx) {
     arq = fopen("dados/alugueis.txt", "wt");
     
     for(int i = 0; i < idx; i++) {
-        fprintf(arq, "placaCarros: %s\n", al[i].placaCarro);
+        fprintf(arq, "placaCarro: %s\n", al[i].placaCarro);
         fprintf(arq, "cpfCliente: %s\n", al[i].cpfCliente);
-        fprintf(arq, "dataAluguel: %ld\n", (long)al[i].dataAluguel);
-        fprintf(arq, "dataEntrega: %ld\n", (long)al[i].dataEntrega);
+        
+        fprintf(arq, "dataAluguel: %lld\n", al[i].dataAluguel);
+        fprintf(arq, "dataEntrega: %lld\n", al[i].dataEntrega);
     }
     
     fclose(arq);
@@ -95,27 +96,26 @@ void salvarArqAluguel(Aluguel* al, int idx) {
 void lerArqAluguel(Aluguel* al, int *idx) {
     FILE *arq;
     int result;
+    *idx = 0;
     
-    arq = fopen ("dados/alugueis.txt", "rt");
+    arq = fopen("dados/alugueis.txt", "rt");
     
     if(arq == NULL)
         return;
-
-    *idx = 0;
     
-    result = fscanf(arq, "placaCarro: %[^\n]\n", al[*idx].placaCarro);
+    result = fscanf(arq, "placaCarro: %s\n", al[*idx].placaCarro);
     while(result != EOF) {
-        long int tempo;
         
-        fscanf(arq, "cfpCliente: %s\n", al[*idx].cpfCliente);
-        fscanf(arq, "dataAluguel: %ld\n", &tempo);
-        al[*idx].dataAluguel = (time_t)tempo;
+        fscanf(arq, "cpfCliente: %s\n", al[*idx].cpfCliente);
         
-        fscanf(arq, "dataEntrega: %ld\n", &tempo);
-        al[*idx].dataEntrega = (time_t)tempo;
+        fscanf(arq, "dataAluguel: %lld\n", &al[*idx].dataAluguel);
+        
+        fscanf(arq, "dataEntrega: %lld\n", &al[*idx].dataEntrega);
         
         *idx = *idx + 1;
         
-        result = fscanf(arq, "placaCarro: %[^\n]\n", al[*idx].placaCarro);
+        result = fscanf(arq, "placaCarro: %s\n", al[*idx].placaCarro);
     }
+    
+    fclose(arq);
 }

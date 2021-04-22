@@ -1,13 +1,25 @@
-#ifndef CARRO_H   // Evita as inclusões cíclicas
+#ifndef CARRO_H   // Evita as inclusÃµes cÃ­clicas
 #define CARRO_H
 
-//Declaração de struct
+//DeclaraÃ§Ã£o de struct
 
 typedef struct carro {
     char modelo[128];
     char placa[8];
 } Carro;
 
-// Declaração das funções aqui
+// DeclaraÃ§Ã£o das funÃ§Ãµes aqui
 
-#endif
+Carro criarCarro();
+
+void atualizarDadosCarro(Carro *carros, int pos);
+
+void excluirCarro(Carro *carros, int *indexCarro, int pos);
+
+void printCarro(Carro carro);     
+
+int buscarCarro(Carro *carros, int indexCarro, char placa[8]);
+
+void validaPlaca(Carro *carros, int *indexCarro, int pos);
+
+#endif 
